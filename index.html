@@ -9,7 +9,7 @@
 body {
   margin: 0;
   height: 100vh;
-  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  background: radial-gradient(circle at top, #ffb6c1, #ff758c, #c9184a);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,64 +17,101 @@ body {
   overflow: hidden;
 }
 
+/* 🌸 ROMANTIC GLASS CARD */
 .card {
-  background: #fff0f5;
-  padding: 30px;
-  border-radius: 25px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 182, 193, 0.35),
+    rgba(255, 105, 180, 0.25)
+  );
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  padding: 35px 28px;
+  border-radius: 28px;
   text-align: center;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
   width: 90%;
-  max-width: 420px;
+  max-width: 430px;
+  box-shadow:
+    0 0 25px rgba(255, 77, 109, 0.6),
+    0 0 60px rgba(255, 77, 109, 0.35);
+  animation: glow 3s ease-in-out infinite;
   z-index: 10;
 }
 
-h1 { color: #d63384; }
-h2 { color: #ff4d6d; font-weight: normal; }
+/* ✨ Glow pulse */
+@keyframes glow {
+  0% { box-shadow: 0 0 25px rgba(255,77,109,0.5); }
+  50% { box-shadow: 0 0 55px rgba(255,77,109,0.9); }
+  100% { box-shadow: 0 0 25px rgba(255,77,109,0.5); }
+}
 
+h1 {
+  color: #fff;
+  text-shadow: 0 0 10px rgba(255,255,255,0.8);
+  margin-bottom: 10px;
+}
+
+h2 {
+  color: #ffe3ec;
+  font-weight: normal;
+  font-size: 18px;
+}
+
+/* 💖 Buttons */
 .buttons {
-  margin-top: 30px;
+  margin-top: 35px;
   position: relative;
   height: 150px;
 }
 
 button {
-  padding: 15px 30px;
+  padding: 15px 32px;
   font-size: 18px;
-  border-radius: 30px;
+  border-radius: 40px;
   border: none;
   cursor: pointer;
   position: absolute;
+  transition: transform 0.2s ease;
 }
 
 #yes {
-  background: #ff4d6d;
+  background: linear-gradient(135deg, #ff4d6d, #ff758c);
   color: white;
   left: 50%;
   transform: translateX(-50%);
+  box-shadow: 0 0 15px rgba(255,77,109,0.8);
+}
+
+#yes:hover {
+  transform: translateX(-50%) scale(1.08);
 }
 
 #no {
-  background: #adb5bd;
+  background: rgba(255,255,255,0.3);
   color: white;
-  left: 10%;
-  top: 80px;
+  left: 12%;
+  top: 85px;
 }
 
-.result { display: none; }
+.result {
+  display: none;
+}
 
 .names {
   font-size: 20px;
-  color: #6a1b9a;
+  color: #fff;
   font-weight: bold;
-  margin-top: 10px;
+  margin-top: 15px;
+  text-shadow: 0 0 10px rgba(255,255,255,0.7);
 }
 
 .result img {
   width: 240px;
   margin-top: 20px;
+  border-radius: 18px;
 }
 
-/* Hearts animation */
+/* 💕 Floating Hearts */
 .heart {
   position: fixed;
   bottom: -20px;
@@ -92,15 +129,15 @@ button {
 
 <body>
 
-<!-- BACKGROUND MUSIC -->
+<!-- 🎶 Background music -->
 <audio autoplay loop>
   <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mp3">
 </audio>
 
-<!-- BLAST SOUND -->
+<!-- 💥 Blast sound -->
 <audio id="blastSound" src="https://www.soundjay.com/misc/sounds/confetti-pop-01.mp3"></audio>
 
-<!-- QUESTION -->
+<!-- QUESTION CARD -->
 <div class="card" id="card">
   <h1>Will you be my Valentine? 💕</h1>
   <h2>Keesara Sai Prasanna Reddy 💖</h2>
@@ -111,7 +148,7 @@ button {
   </div>
 </div>
 
-<!-- RESULT -->
+<!-- RESULT CARD -->
 <div class="card result" id="result">
   <h1>Forever & Always 💞</h1>
 
@@ -121,13 +158,12 @@ button {
     Mrs Sai Prasanna Bhagesh Poojari
   </div>
 
-  <!-- COUPLE TEDDY -->
-  <img src="https://media.giphy.com/media/3oriO6qJiXajN0TyDu/giphy.gif" 
+  <img src="https://media.giphy.com/media/3oriO6qJiXajN0TyDu/giphy.gif"
        alt="teddy couple kissing">
 </div>
 
 <script>
-/* Floating NO button */
+/* NO button escape */
 const noBtn = document.getElementById("no");
 function moveButton() {
   noBtn.style.left = Math.random() * 70 + "%";
@@ -144,7 +180,7 @@ document.getElementById("yes").onclick = () => {
   launchConfetti();
 };
 
-/* Hearts always floating */
+/* Hearts always */
 function createHeart() {
   const heart = document.createElement("div");
   heart.className = "heart";
@@ -154,9 +190,9 @@ function createHeart() {
   document.body.appendChild(heart);
   setTimeout(() => heart.remove(), 7000);
 }
-setInterval(createHeart, 500);
+setInterval(createHeart, 450);
 
-/* Confetti on YES */
+/* Confetti */
 function launchConfetti() {
   for (let i = 0; i < 30; i++) {
     const conf = document.createElement("div");
