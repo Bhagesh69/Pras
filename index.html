@@ -5,73 +5,68 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Be My Valentine 💖</title>
 
+<!-- 💕 Romantic Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600&family=Great+Vibes&display=swap" rel="stylesheet">
+
 <style>
 body {
   margin: 0;
   height: 100vh;
-  background: radial-gradient(circle at top, #ffb6c1, #ff758c, #c9184a);
+  background: radial-gradient(circle at top, #ffb6c1, #ff758c, #b5179e);
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: 'Segoe UI', sans-serif;
   overflow: hidden;
 }
 
-/* 🌸 ROMANTIC GLASS CARD */
+/* 🌸 Romantic Glass Card */
 .card {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 182, 193, 0.35),
-    rgba(255, 105, 180, 0.25)
-  );
+  background: linear-gradient(135deg, rgba(255,182,193,0.35), rgba(255,105,180,0.25));
   backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  padding: 35px 28px;
-  border-radius: 28px;
+  padding: 38px 30px;
+  border-radius: 30px;
   text-align: center;
   width: 90%;
-  max-width: 430px;
-  box-shadow:
-    0 0 25px rgba(255, 77, 109, 0.6),
-    0 0 60px rgba(255, 77, 109, 0.35);
+  max-width: 440px;
+  box-shadow: 0 0 35px rgba(255,105,180,0.9);
   animation: glow 3s ease-in-out infinite;
   z-index: 10;
 }
 
-/* ✨ Glow pulse */
 @keyframes glow {
   0% { box-shadow: 0 0 25px rgba(255,77,109,0.5); }
-  50% { box-shadow: 0 0 55px rgba(255,77,109,0.9); }
+  50% { box-shadow: 0 0 65px rgba(255,77,109,1); }
   100% { box-shadow: 0 0 25px rgba(255,77,109,0.5); }
 }
 
 h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 42px;
   color: #fff;
-  text-shadow: 0 0 10px rgba(255,255,255,0.8);
   margin-bottom: 10px;
 }
 
 h2 {
+  font-family: 'Playfair Display', serif;
   color: #ffe3ec;
-  font-weight: normal;
   font-size: 18px;
+  font-style: italic;
 }
 
 /* 💖 Buttons */
 .buttons {
-  margin-top: 35px;
+  margin-top: 40px;
   position: relative;
   height: 150px;
 }
 
 button {
-  padding: 15px 32px;
+  padding: 16px 34px;
   font-size: 18px;
-  border-radius: 40px;
+  border-radius: 50px;
   border: none;
   cursor: pointer;
   position: absolute;
-  transition: transform 0.2s ease;
 }
 
 #yes {
@@ -79,45 +74,38 @@ button {
   color: white;
   left: 50%;
   transform: translateX(-50%);
-  box-shadow: 0 0 15px rgba(255,77,109,0.8);
-}
-
-#yes:hover {
-  transform: translateX(-50%) scale(1.08);
+  box-shadow: 0 0 20px rgba(255,77,109,0.9);
 }
 
 #no {
   background: rgba(255,255,255,0.3);
   color: white;
-  left: 12%;
-  top: 85px;
+  left: 10%;
+  top: 90px;
 }
 
-.result {
-  display: none;
-}
+.result { display: none; }
 
 .names {
+  font-family: 'Playfair Display', serif;
   font-size: 20px;
   color: #fff;
-  font-weight: bold;
-  margin-top: 15px;
-  text-shadow: 0 0 10px rgba(255,255,255,0.7);
-}
-
-.result img {
-  width: 240px;
   margin-top: 20px;
-  border-radius: 18px;
 }
 
-/* 💕 Floating Hearts */
+/* 💍 Proposal Animation */
+.proposal img {
+  width: 230px;
+  margin-top: 25px;
+  border-radius: 20px;
+}
+
+/* ❤️ Floating hearts */
 .heart {
   position: fixed;
   bottom: -20px;
   font-size: 22px;
   animation: floatUp 6s linear infinite;
-  z-index: 1;
 }
 
 @keyframes floatUp {
@@ -129,17 +117,17 @@ button {
 
 <body>
 
-<!-- 🎶 Background music -->
+<!-- 🎶 Romantic Music -->
 <audio autoplay loop>
-  <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mp3">
+  <source src="https://www.bensound.com/bensound-music/bensound-love.mp3">
 </audio>
 
-<!-- 💥 Blast sound -->
+<!-- 💥 Celebration Sound -->
 <audio id="blastSound" src="https://www.soundjay.com/misc/sounds/confetti-pop-01.mp3"></audio>
 
-<!-- QUESTION CARD -->
+<!-- QUESTION -->
 <div class="card" id="card">
-  <h1>Will you be my Valentine? 💕</h1>
+  <h1>Will you be my Valentine?</h1>
   <h2>Keesara Sai Prasanna Reddy 💖</h2>
 
   <div class="buttons">
@@ -148,9 +136,9 @@ button {
   </div>
 </div>
 
-<!-- RESULT CARD -->
+<!-- RESULT -->
 <div class="card result" id="result">
-  <h1>Forever & Always 💞</h1>
+  <h1>She Said Yes 💍</h1>
 
   <div class="names">
     Mrs Bhagesh Poojari <br><br>
@@ -158,8 +146,10 @@ button {
     Mrs Sai Prasanna Bhagesh Poojari
   </div>
 
-  <img src="https://media.giphy.com/media/3oriO6qJiXajN0TyDu/giphy.gif"
-       alt="teddy couple kissing">
+  <!-- 💍 Ring Proposal Animation (HAND ONLY) -->
+  <div class="proposal">
+    <img src="https://media.giphy.com/media/26gsccje7r5WUrXsA/giphy.gif" alt="ring proposal">
+  </div>
 </div>
 
 <script>
@@ -177,7 +167,6 @@ document.getElementById("yes").onclick = () => {
   document.getElementById("blastSound").play();
   document.getElementById("card").style.display = "none";
   document.getElementById("result").style.display = "block";
-  launchConfetti();
 };
 
 /* Hearts always */
@@ -191,19 +180,6 @@ function createHeart() {
   setTimeout(() => heart.remove(), 7000);
 }
 setInterval(createHeart, 450);
-
-/* Confetti */
-function launchConfetti() {
-  for (let i = 0; i < 30; i++) {
-    const conf = document.createElement("div");
-    conf.className = "heart";
-    conf.innerHTML = "🎉";
-    conf.style.left = Math.random() * 100 + "vw";
-    conf.style.animationDuration = (2 + Math.random() * 2) + "s";
-    document.body.appendChild(conf);
-    setTimeout(() => conf.remove(), 4000);
-  }
-}
 </script>
 
 </body>
