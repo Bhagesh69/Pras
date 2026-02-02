@@ -16,9 +16,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  overflow: hidden; /* important */
   font-family: 'Playfair Display', serif;
 }
+
 
 /* Romantic Glass Card */
 .card {
@@ -39,6 +40,19 @@ body {
   animation: glow 3s ease-in-out infinite;
   z-index: 10;
 }
+  .gif-row {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 25px;
+  flex-wrap: wrap; /* mobile friendly */
+}
+
+.gif-row img {
+  width: 160px;
+  border-radius: 18px;
+}
+
 
 @keyframes glow {
   0% { box-shadow: 0 0 25px rgba(255,77,109,0.5); }
@@ -163,25 +177,24 @@ button {
     Mrs Sai Prasanna Bhagesh Poojari
   </div>
 
-  <!-- REAL COUPLE PHOTO -->
-  <img
-    src="couple.png"
-    alt="Our Moment"
-    class="couple-img"
-  />
+ <!-- REAL COUPLE PHOTO -->
+<img
+  src="couple.png"
+  alt="Our Moment"
+  class="couple-img"
+/>
 
-  <!-- Ring Proposal Animation -->
-
-    <img
-    src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExMW9vdDJ2bXVqYTd5M29pMm8ydGJvem8zbDJ5Y2M0dDdlNTAwNHUwbCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xT39CXg70nNS0MFNLy/giphy.gif"
-    alt="Ring Proposal"
-    class="proposal-img"
+<!-- GIFS SIDE BY SIDE -->
+<div class="gif-row">
+  <img
+    src="https://media2.giphy.com/media/xT39CXg70nNS0MFNLy/giphy.gif"
+    alt="Proposal GIF 1"
   />
   <img
-    src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2xnNXZzcHJkOXk0cHdvcmV3M3pyOGdteHEzam1ydmdyMm1wYWl6cCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/yzQ6Q5JqnoNAPVFA5N/giphy.gif"
-    alt="Ring Proposal"
-    class="proposal-img"
+    src="https://media1.giphy.com/media/yzQ6Q5JqnoNAPVFA5N/giphy.gif"
+    alt="Proposal GIF 2"
   />
+</div>
 
 
   
@@ -202,6 +215,9 @@ document.getElementById("yes").onclick = () => {
   document.getElementById("blastSound").play();
   document.getElementById("card").style.display = "none";
   document.getElementById("result").style.display = "block";
+
+  // enable scrolling after YES
+  document.body.style.overflowY = "auto";
 };
 
 /* Hearts always floating */
