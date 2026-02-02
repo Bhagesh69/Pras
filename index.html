@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Be My Valentine 💖</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Segoe UI', sans-serif;
+  overflow: hidden;
+}
+
+.card {
+  background: #fff0f5;
+  padding: 30px;
+  border-radius: 25px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  width: 90%;
+  max-width: 420px;
+}
+
+h1 {
+  color: #d63384;
+}
+
+h2 {
+  color: #ff4d6d;
+  font-weight: normal;
+}
+
+.buttons {
+  margin-top: 30px;
+  position: relative;
+  height: 150px;
+}
+
+button {
+  padding: 15px 30px;
+  font-size: 18px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+}
+
+#yes {
+  background: #ff4d6d;
+  color: white;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#no {
+  background: #adb5bd;
+  color: white;
+  left: 10%;
+  top: 80px;
+}
+
+.result {
+  display: none;
+}
+
+.names {
+  font-size: 20px;
+  color: #6a1b9a;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.result img {
+  width: 220px;
+  margin-top: 20px;
+}
+
+.heart {
+  position: fixed;
+  bottom: -20px;
+  font-size: 24px;
+  animation: floatUp 6s linear infinite;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-100vh); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- QUESTION -->
+<div class="card" id="card">
+  <h1>Will you be my Valentine? 💕</h1>
+  <h2>Keesara Sai Prasanna Reddy 💖</h2>
+
+  <div class="buttons">
+    <button id="yes">Yes 💖</button>
+    <button id="no">No 😅</button>
+  </div>
+</div>
+
+<!-- RESULT -->
+<div class="card result" id="result">
+  <h1>Forever & Always 💞</h1>
+
+  <div class="names">
+    Mrs Bhagesh Poojari <br><br>
+    & <br><br>
+    Mrs Sai Prasanna Bhagesh Poojari
+  </div>
+
+  <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" alt="kissing teddy">
+
+</div>
+
+<!-- SOUNDS -->
+<audio id="blastSound" src="https://www.soundjay.com/misc/sounds/confetti-pop-01.mp3"></audio>
+
+<script>
+const noBtn = document.getElementById("no");
+
+function moveButton() {
+  const x = Math.random() * 70;
+  const y = Math.random() * 70;
+  noBtn.style.left = x + "%";
+  noBtn.style.top = y + "%";
+}
+
+noBtn.addEventListener("mouseenter", moveButton);
+noBtn.addEventListener("touchstart", moveButton);
+
+document.getElementById("yes").onclick = () => {
+  document.getElementById("blastSound").play();
+  document.getElementById("card").style.display = "none";
+  document.getElementById("result").style.display = "block";
+  launchHearts();
+  launchConfetti();
+};
+
+function launchHearts() {
+  for (let i = 0; i < 40; i++) {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+  }
+}
+
+function launchConfetti() {
+  for (let i = 0; i < 30; i++) {
+    const conf = document.createElement("div");
+    conf.className = "heart";
+    conf.innerHTML = "🎉";
+    conf.style.left = Math.random() * 100 + "vw";
+    conf.style.animationDuration = (2 + Math.random() * 2) + "s";
+    document.body.appendChild(conf);
+    setTimeout(() => conf.remove(), 4000);
+  }
+}
+</script>
+
+</body>
+</html>
