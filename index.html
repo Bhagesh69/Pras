@@ -3,183 +3,136 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Be My Valentine 💖</title>
+<title>Our Love Story 💖</title>
 
-<!-- 💕 Romantic Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600&family=Great+Vibes&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
 
 <style>
 body {
   margin: 0;
   height: 100vh;
-  background: radial-gradient(circle at top, #ffb6c1, #ff758c, #b5179e);
+  background: radial-gradient(circle, #ff758c, #b5179e);
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  font-family: 'Playfair Display', serif;
 }
 
-/* 🌸 Romantic Glass Card */
 .card {
-  background: linear-gradient(135deg, rgba(255,182,193,0.35), rgba(255,105,180,0.25));
-  backdrop-filter: blur(18px);
-  padding: 38px 30px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(20px);
+  padding: 35px;
   border-radius: 30px;
   text-align: center;
   width: 90%;
   max-width: 440px;
-  box-shadow: 0 0 35px rgba(255,105,180,0.9);
-  animation: glow 3s ease-in-out infinite;
-  z-index: 10;
-}
-
-@keyframes glow {
-  0% { box-shadow: 0 0 25px rgba(255,77,109,0.5); }
-  50% { box-shadow: 0 0 65px rgba(255,77,109,1); }
-  100% { box-shadow: 0 0 25px rgba(255,77,109,0.5); }
+  color: white;
+  box-shadow: 0 0 40px rgba(255,105,180,0.9);
 }
 
 h1 {
   font-family: 'Great Vibes', cursive;
   font-size: 42px;
-  color: #fff;
-  margin-bottom: 10px;
-}
-
-h2 {
-  font-family: 'Playfair Display', serif;
-  color: #ffe3ec;
-  font-size: 18px;
-  font-style: italic;
-}
-
-/* 💖 Buttons */
-.buttons {
-  margin-top: 40px;
-  position: relative;
-  height: 150px;
 }
 
 button {
   padding: 16px 34px;
-  font-size: 18px;
-  border-radius: 50px;
+  border-radius: 40px;
   border: none;
+  font-size: 18px;
+  background: linear-gradient(135deg,#ff4d6d,#ff758c);
+  color: white;
   cursor: pointer;
-  position: absolute;
 }
 
-#yes {
-  background: linear-gradient(135deg, #ff4d6d, #ff758c);
+/* FULLSCREEN STORY */
+.story {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle, #ff758c, #7209b7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   color: white;
-  left: 50%;
-  transform: translateX(-50%);
-  box-shadow: 0 0 20px rgba(255,77,109,0.9);
+  text-align: center;
 }
 
-#no {
-  background: rgba(255,255,255,0.3);
-  color: white;
-  left: 10%;
-  top: 90px;
+.story img {
+  width: 260px;
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(255,255,255,0.6);
 }
-
-.result { display: none; }
 
 .names {
-  font-family: 'Playfair Display', serif;
-  font-size: 20px;
-  color: #fff;
   margin-top: 20px;
-}
-
-/* 💍 Proposal Animation */
-.proposal img {
-  width: 230px;
-  margin-top: 25px;
-  border-radius: 20px;
-}
-
-/* ❤️ Floating hearts */
-.heart {
-  position: fixed;
-  bottom: -20px;
-  font-size: 22px;
-  animation: floatUp 6s linear infinite;
-}
-
-@keyframes floatUp {
-  0% { transform: translateY(0); opacity: 1; }
-  100% { transform: translateY(-100vh); opacity: 0; }
+  font-size: 20px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- 🎶 Romantic Music -->
+<!-- MUSIC -->
 <audio autoplay loop>
   <source src="https://www.bensound.com/bensound-music/bensound-love.mp3">
 </audio>
 
-<!-- 💥 Celebration Sound -->
-<audio id="blastSound" src="https://www.soundjay.com/misc/sounds/confetti-pop-01.mp3"></audio>
-
 <!-- QUESTION -->
 <div class="card" id="card">
   <h1>Will you be my Valentine?</h1>
-  <h2>Keesara Sai Prasanna Reddy 💖</h2>
-
-  <div class="buttons">
-    <button id="yes">Yes 💖</button>
-    <button id="no">No 😅</button>
-  </div>
+  <p>Keesara Sai Prasanna Reddy 💖</p>
+  <button onclick="startStory()">Yes 💖</button>
 </div>
 
-<!-- RESULT -->
-<div class="card result" id="result">
-  <h1>She Said Yes 💍</h1>
-
-  <div class="names">
-    Mrs Bhagesh Poojari <br><br>
-    & <br><br>
-    Mrs Sai Prasanna Bhagesh Poojari
-  </div>
-
-  <!-- 💍 Ring Proposal Animation (HAND ONLY) -->
-  <div class="proposal">
-    <img src="https://media.giphy.com/media/26gsccje7r5WUrXsA/giphy.gif" alt="ring proposal">
-  </div>
+<!-- STORY SCREENS -->
+<div class="story" id="story">
+  <h1 id="storyText">Our Love Journey</h1>
+  <img id="storyImg" src="">
 </div>
 
 <script>
-/* NO button escape */
-const noBtn = document.getElementById("no");
-function moveButton() {
-  noBtn.style.left = Math.random() * 70 + "%";
-  noBtn.style.top = Math.random() * 70 + "%";
-}
-noBtn.addEventListener("mouseenter", moveButton);
-noBtn.addEventListener("touchstart", moveButton);
+const scenes = [
+  {
+    text: "Across the World 🌍",
+    img: "https://media.giphy.com/media/l0HlBO7eyXzSZkJri/giphy.gif"
+  },
+  {
+    text: "Like Shiva & Parvati 🕉️",
+    img: "https://upload.wikimedia.org/wikipedia/commons/4/45/Shiva_Parvati.jpg"
+  },
+  {
+    text: "Like Ram & Sita 🏹",
+    img: "https://upload.wikimedia.org/wikipedia/commons/7/73/Rama_Sita.jpg"
+  },
+  {
+    text: "One Heart ❤️",
+    img: "https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif"
+  },
+  {
+    text: "Forever Begins 💍",
+    img: "https://media.giphy.com/media/26gsccje7r5WUrXsA/giphy.gif"
+  }
+];
 
-/* YES click */
-document.getElementById("yes").onclick = () => {
-  document.getElementById("blastSound").play();
+let index = 0;
+
+function startStory() {
   document.getElementById("card").style.display = "none";
-  document.getElementById("result").style.display = "block";
-};
-
-/* Hearts always */
-function createHeart() {
-  const heart = document.createElement("div");
-  heart.className = "heart";
-  heart.innerHTML = "❤️";
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.animationDuration = (4 + Math.random() * 3) + "s";
-  document.body.appendChild(heart);
-  setTimeout(() => heart.remove(), 7000);
+  document.getElementById("story").style.display = "flex";
+  showScene();
 }
-setInterval(createHeart, 450);
+
+function showScene() {
+  if (index >= scenes.length) return;
+
+  document.getElementById("storyText").innerText = scenes[index].text;
+  document.getElementById("storyImg").src = scenes[index].img;
+  index++;
+
+  setTimeout(showScene, 3000);
+}
 </script>
 
 </body>
