@@ -25,16 +25,11 @@ body {
   box-shadow: 0 20px 40px rgba(0,0,0,0.3);
   width: 90%;
   max-width: 420px;
+  z-index: 10;
 }
 
-h1 {
-  color: #d63384;
-}
-
-h2 {
-  color: #ff4d6d;
-  font-weight: normal;
-}
+h1 { color: #d63384; }
+h2 { color: #ff4d6d; font-weight: normal; }
 
 .buttons {
   margin-top: 30px;
@@ -65,9 +60,7 @@ button {
   top: 80px;
 }
 
-.result {
-  display: none;
-}
+.result { display: none; }
 
 .names {
   font-size: 20px;
@@ -77,15 +70,17 @@ button {
 }
 
 .result img {
-  width: 220px;
+  width: 240px;
   margin-top: 20px;
 }
 
+/* Hearts animation */
 .heart {
   position: fixed;
   bottom: -20px;
-  font-size: 24px;
+  font-size: 22px;
   animation: floatUp 6s linear infinite;
+  z-index: 1;
 }
 
 @keyframes floatUp {
@@ -96,6 +91,14 @@ button {
 </head>
 
 <body>
+
+<!-- BACKGROUND MUSIC -->
+<audio autoplay loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mp3">
+</audio>
+
+<!-- BLAST SOUND -->
+<audio id="blastSound" src="https://www.soundjay.com/misc/sounds/confetti-pop-01.mp3"></audio>
 
 <!-- QUESTION -->
 <div class="card" id="card">
@@ -118,46 +121,42 @@ button {
     Mrs Sai Prasanna Bhagesh Poojari
   </div>
 
-  <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" alt="kissing teddy">
-
+  <!-- COUPLE TEDDY -->
+  <img src="https://media.giphy.com/media/3oriO6qJiXajN0TyDu/giphy.gif" 
+       alt="teddy couple kissing">
 </div>
 
-<!-- SOUNDS -->
-<audio id="blastSound" src="https://www.soundjay.com/misc/sounds/confetti-pop-01.mp3"></audio>
-
 <script>
+/* Floating NO button */
 const noBtn = document.getElementById("no");
-
 function moveButton() {
-  const x = Math.random() * 70;
-  const y = Math.random() * 70;
-  noBtn.style.left = x + "%";
-  noBtn.style.top = y + "%";
+  noBtn.style.left = Math.random() * 70 + "%";
+  noBtn.style.top = Math.random() * 70 + "%";
 }
-
 noBtn.addEventListener("mouseenter", moveButton);
 noBtn.addEventListener("touchstart", moveButton);
 
+/* YES click */
 document.getElementById("yes").onclick = () => {
   document.getElementById("blastSound").play();
   document.getElementById("card").style.display = "none";
   document.getElementById("result").style.display = "block";
-  launchHearts();
   launchConfetti();
 };
 
-function launchHearts() {
-  for (let i = 0; i < 40; i++) {
-    const heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerHTML = "❤️";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.animationDuration = (3 + Math.random() * 3) + "s";
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 6000);
-  }
+/* Hearts always floating */
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (4 + Math.random() * 3) + "s";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 7000);
 }
+setInterval(createHeart, 500);
 
+/* Confetti on YES */
 function launchConfetti() {
   for (let i = 0; i < 30; i++) {
     const conf = document.createElement("div");
